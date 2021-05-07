@@ -1,0 +1,1 @@
+alter table pessoa change endereco_cep endereco_cep varchar(10);
