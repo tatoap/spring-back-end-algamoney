@@ -28,6 +28,8 @@ import com.algaworks.algamoneyapi.exception.NegocioException;
 @ControllerAdvice
 public class AlgamoneyExceptionHandler extends ResponseEntityExceptionHandler {
 	
+	private static final String MSG_ACESSO_NEGADO = "Usuário ou senha inválido!";
+
 	private static final String MSG_REQUISICAO_INVALIDA = "O corpo da requisição esta inválido, verifique erro de sintaxe.";
 
 	private static final String MSG_CAMPOS_INVALIDOS = "Um ou mais campos estão inválidos, faça o preenchimento correto e tente novamente";
@@ -97,6 +99,25 @@ public class AlgamoneyExceptionHandler extends ResponseEntityExceptionHandler {
 		
 		return handleExceptionInternal(ex, problema, new HttpHeaders(), status, request);
 	}
+	
+	/*@ExceptionHandler(UsuarioOuSenhaIncorretaException.class)
+	//public ResponseEntity<?> handleAccessDenied(AccessDeniedException ex, WebRequest request) {
+	public ResponseEntity<?> handleAcessoNegado(UsuarioOuSenhaIncorretaException ex, WebRequest request) {
+		
+		System.out.println("passei aqui exception");
+		HttpStatus status = HttpStatus.FORBIDDEN;
+		
+		ProblemType problemType = ProblemType.ACESSO_NEGADO;
+		
+		String detail = ex.getMessage();
+		
+		Problem problem = createProblemBuilder(status, problemType, detail)
+				.userMessage(detail)
+				.userMessage(MSG_ACESSO_NEGADO)
+				.build();
+		
+		return handleExceptionInternal(ex, problem, new HttpHeaders(), status, request);
+	}*/
 	
 	@ExceptionHandler(EntidadeEmUsoException.class)
 	public ResponseEntity<?> handleEntidadeEmUso(EntidadeEmUsoException ex, WebRequest request) {

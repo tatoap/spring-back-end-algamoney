@@ -17,6 +17,7 @@ alter table permissao auto_increment = 1;
 
 insert into usuario (nome, email, senha) values ('Administrador', 'admin@algamoney.com', '$2a$10$X607ZPhQ4EgGNaYKt3n4SONjIv9zc.VMWdEuhCuba7oLAL5IvcL5.');
 insert into usuario (nome, email, senha) values ('Renato Ramos', 'renato.ramos@algamoney.com', '$2a$10$X607ZPhQ4EgGNaYKt3n4SONjIv9zc.VMWdEuhCuba7oLAL5IvcL5.');
+insert into usuario (nome, email, senha) values ('Patricia', 'patricia@algamoney.com', '$2a$10$X607ZPhQ4EgGNaYKt3n4SONjIv9zc.VMWdEuhCuba7oLAL5IvcL5.');
 
 insert into permissao (descricao) values ('ROLE_CADASTRAR_CATEGORIA');
 insert into permissao (descricao) values ('ROLE_PESQUISAR_CATEGORIA');
@@ -30,6 +31,8 @@ insert into permissao (descricao) values ('ROLE_PESQUISAR_LANCAMENTO');
 insert into usuario_permissao (usuario_id, permissao_id) values (1, 1), (1, 2), (1, 3), (1, 4), (1, 5), (1, 6), (1, 7), (1, 8);
 
 insert into usuario_permissao (usuario_id, permissao_id) values (2, 2), (2, 5), (2, 8);
+
+insert into usuario_permissao (usuario_id, permissao_id) values (3, 2), (3, 5), (3, 8);
 
 insert into categoria (nome) values ('Lazer');
 insert into categoria (nome) values ('Alimentação');

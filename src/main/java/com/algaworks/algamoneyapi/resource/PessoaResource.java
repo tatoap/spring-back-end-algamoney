@@ -3,6 +3,7 @@ package com.algaworks.algamoneyapi.resource;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.domain.Page;
@@ -66,7 +67,9 @@ public class PessoaResource {
 	@PreAuthorize("hasAuthority('ROLE_CADASTRAR_PESSOA') and #oauth2.hasScope('write')")
 	public ResponseEntity<Pessoa> atualizar(@PathVariable Long pessoaId, @Valid @RequestBody Pessoa pessoa){
 		Pessoa pessoaSalva = pessoaService.buscarOuFalhar(pessoaId);
-		//Pessoa pessoaSalva = pessoaService.atualizar(pessoaId, pessoa);
+		
+		BeanUtils.copyProperties(pessoa, pessoaSalva, "id");
+		
 		pessoaService.salvar(pessoaSalva);
 		return ResponseEntity.ok(pessoaSalva);
 	}

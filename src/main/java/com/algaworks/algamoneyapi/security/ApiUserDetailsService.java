@@ -10,22 +10,26 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.oauth2.common.exceptions.InvalidGrantException;
 import org.springframework.stereotype.Service;
 
+import com.algaworks.algamoneyapi.exception.UsuarioOuSenhaIncorretaException;
 import com.algaworks.algamoneyapi.model.Usuario;
 import com.algaworks.algamoneyapi.repository.UsuarioRepository;
 
 @Service
 public class ApiUserDetailsService implements UserDetailsService {
 	
+	private static final String MSG_USUARIO_SENHA_INCORRETO = "Usuário e/ou senha incorretos.";
+	
 	@Autowired
 	private UsuarioRepository usuarioRepository;
 
 	@Override
-	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+	public UserDetails loadUserByUsername(String email) throws InvalidGrantException {
+		System.out.println("passei aqui");
 		Optional<Usuario> usuarioOptional = usuarioRepository.findByEmail(email);
-		Usuario usuario = usuarioOptional.orElseThrow(() -> new UsernameNotFoundException("Usuário e/ou senha incorretos."));
+		Usuario usuario = usuarioOptional.orElseThrow(() -> new UsuarioOuSenhaIncorretaException(MSG_USUARIO_SENHA_INCORRETO));
 		return new UsuarioSistema(usuario, getPermissoes(usuario));
 	}
 
