@@ -1,5 +1,6 @@
 package com.algaworks.algamoneyapi.service;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -21,6 +22,20 @@ public class PessoaService {
 	
 	@Transactional
 	public Pessoa salvar(Pessoa pessoa) {
+		pessoa.getContatos().forEach(c -> c.setPessoa(pessoa));
+		return pessoaRepository.save(pessoa);
+	}
+	
+	@Transactional
+	public Pessoa atualizar(Long pessoaId, Pessoa pessoa) {
+		Pessoa pessoaSalva = buscarOuFalhar(pessoaId);
+		
+		pessoaSalva.getContatos().clear();
+		pessoaSalva.getContatos().addAll(pessoa.getContatos());
+		pessoaSalva.getContatos().forEach(c -> c.setPessoa(pessoaSalva));
+		
+		BeanUtils.copyProperties(pessoa, pessoaSalva, "id", "contatos");
+		
 		return pessoaRepository.save(pessoa);
 	}
 	

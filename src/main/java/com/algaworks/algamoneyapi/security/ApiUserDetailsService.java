@@ -10,7 +10,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.oauth2.common.exceptions.InvalidGrantException;
 import org.springframework.stereotype.Service;
 
 import com.algaworks.algamoneyapi.exception.UsuarioOuSenhaIncorretaException;
@@ -26,8 +25,7 @@ public class ApiUserDetailsService implements UserDetailsService {
 	private UsuarioRepository usuarioRepository;
 
 	@Override
-	public UserDetails loadUserByUsername(String email) throws InvalidGrantException {
-		System.out.println("passei aqui");
+	public UserDetails loadUserByUsername(String email) {
 		Optional<Usuario> usuarioOptional = usuarioRepository.findByEmail(email);
 		Usuario usuario = usuarioOptional.orElseThrow(() -> new UsuarioOuSenhaIncorretaException(MSG_USUARIO_SENHA_INCORRETO));
 		return new UsuarioSistema(usuario, getPermissoes(usuario));

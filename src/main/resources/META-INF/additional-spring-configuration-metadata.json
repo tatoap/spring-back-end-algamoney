@@ -1,5 +1,32 @@
-{"properties": [{
-  "name": "algamoney.seguranca.enable-https",
-  "type": "java.lang.String",
-  "description": "A description for 'algamoney.seguranca.enable-https'"
-}]}
+{"properties": [
+  {
+    "name": "algamoney.seguranca.enable-https",
+    "type": "java.lang.String",
+    "description": "A description for 'algamoney.seguranca.enable-https'"
+  },
+  {
+    "name": "algamoney.s3.access-key-id",
+    "type": "java.lang.String",
+    "description": "A description for 'algamoney.s3.access-key-id'"
+  },
+  {
+    "name": "algamoney.s3.secret-access-key",
+    "type": "java.lang.String",
+    "description": "A description for 'algamoney.s3.secret-access-key'"
+  },
+  {
+    "name": "algamoney.origin-permitida",
+    "type": "java.lang.String",
+    "description": "A description for 'algamoney.origin-permitida'"
+  },
+  {
+    "name": "algamoney.s3.regiao",
+    "type": "java.lang.String",
+    "description": "A description for 'algamoney.s3.regiao'"
+  },
+  {
+    "name": "algamoney.s3.bucket",
+    "type": "java.lang.String",
+    "description": "A description for 'algamoney.s3.bucket'"
+  }
+]}

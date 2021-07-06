@@ -2,6 +2,8 @@ package com.algaworks.algamoneyapi.model;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.Size;
 
 import lombok.Data;
@@ -25,11 +27,15 @@ public class Endereco {
 	@Column(name = "endereco_cep")
 	@Size(min = 9, max = 9)
 	private String cep;
+	
+	@ManyToOne
+	@JoinColumn(name = "endereco_id_cidade")
+	private Cidade cidade;
 
-	@Column(name = "endereco_cidade")
+	/*@Column(name = "endereco_cidade")
 	private String cidade;
 	
 	@Column(name = "endereco_estado")
 	@Size(min = 2, max = 2)
-	private String estado;
+	private String estado;*/
 }

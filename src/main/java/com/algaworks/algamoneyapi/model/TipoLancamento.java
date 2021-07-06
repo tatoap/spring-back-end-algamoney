@@ -1,8 +1,17 @@
 package com.algaworks.algamoneyapi.model;
 
+import lombok.Getter;
+
+@Getter
 public enum TipoLancamento {
 	
-	RECEITA,
-	DESPESA
+	RECEITA("Receita"),
+	DESPESA("Despesa");
+	
+	private final String descricao;
+
+	TipoLancamento(String descricao) {
+		this.descricao = descricao;
+	}
 
 }

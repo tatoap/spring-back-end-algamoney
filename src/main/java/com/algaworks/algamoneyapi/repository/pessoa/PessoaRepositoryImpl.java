@@ -14,7 +14,7 @@ import javax.persistence.criteria.Root;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
-import org.springframework.util.StringUtils;
+import org.springframework.util.ObjectUtils;
 
 import com.algaworks.algamoneyapi.model.Pessoa;
 import com.algaworks.algamoneyapi.repository.filter.PessoaFilter;
@@ -55,7 +55,8 @@ public class PessoaRepositoryImpl implements PessoaRepositoryQuery {
 	private Predicate[] criarRestricoes(PessoaFilter pessoaFilter, CriteriaBuilder builder, Root<Pessoa> root) {
 		List<Predicate> predicates = new ArrayList<>();
 		
-		if (!StringUtils.isEmpty(pessoaFilter.getNome())) {
+		//if (!StringUtils.isEmpty(pessoaFilter.getNome())) { // StringUtils.isEmpty esta depreciado
+		if (!ObjectUtils.isEmpty(pessoaFilter.getNome())) {
 			predicates.add(builder.like(builder.lower(root.get("nome")), "%" + pessoaFilter.getNome().toLowerCase() + "%"));
 		}
 		

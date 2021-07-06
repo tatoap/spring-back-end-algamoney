@@ -19,7 +19,7 @@ import com.algaworks.algamoneyapi.core.property.AlgamoneyApiProperty;
 
 @Component
 @Order(Ordered.HIGHEST_PRECEDENCE)
-public class CorsFilter implements Filter {
+public class CorsRequestFilter implements Filter {
 	
 	//private String originPermitida = "http://localhost:8000"; 
 	

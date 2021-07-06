@@ -28,7 +28,7 @@ import com.algaworks.algamoneyapi.exception.NegocioException;
 @ControllerAdvice
 public class AlgamoneyExceptionHandler extends ResponseEntityExceptionHandler {
 	
-	private static final String MSG_ACESSO_NEGADO = "Usuário ou senha inválido!";
+	//private static final String MSG_ACESSO_NEGADO = "Usuário ou senha inválido!";
 
 	private static final String MSG_REQUISICAO_INVALIDA = "O corpo da requisição esta inválido, verifique erro de sintaxe.";
 
